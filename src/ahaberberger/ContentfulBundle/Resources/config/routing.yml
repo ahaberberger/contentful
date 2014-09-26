@@ -1,0 +1,3 @@
+ahaberberger_contentful_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ahaberbergerContentfulBundle:Default:index }
