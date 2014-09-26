@@ -22,11 +22,6 @@ class Entry extends AbstractType {
         return $instance;
     }
 
-    function __construct()
-    {
-
-    }
-
     /**
      * @return string
      */

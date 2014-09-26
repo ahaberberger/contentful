@@ -21,6 +21,10 @@ class AbstractType {
 
     }
 
+    /**
+     * @param $data
+     * @return static
+     */
     protected static function fromArray($data)
     {
         $instance = new static();
@@ -62,6 +66,25 @@ class AbstractType {
     public function setFields($fields)
     {
         $this->fields = $fields;
+    }
+
+    /**
+     * @param $fieldName
+     * @param bool $resolveLinks
+     * @return null
+     */
+    public function getField($fieldName, $resolveLinks = false)
+    {
+        if (array_key_exists($fieldName, $this->fields)) {
+            return $this->fields[$fieldName];
+        } else {
+            return null;
+        }
+    }
+
+    public function setField($fieldName, $fieldValue)
+    {
+        $this->fields[$fieldName] = $fieldValue;
     }
 
 } 

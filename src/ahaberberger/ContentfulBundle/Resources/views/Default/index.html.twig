@@ -4,7 +4,7 @@
     {% for entry in entries %}
     <li class="first">
         <h3><a href="blog.html">{{ entry.fields.title }}</a></h3>
-        <span>Posted : {{ entry.fields.date }}</span> <a href="blog.html"><img src="images/girl.jpg" alt=""></a>
+        <span>Posted : {{ entry.fields.date }}</span> <a href="blog.html"><img src="http:{{ entry.fields.image.fields.file.url }}" alt=""></a>
         <p>
             {{ entry.fields.text }}
         </p>

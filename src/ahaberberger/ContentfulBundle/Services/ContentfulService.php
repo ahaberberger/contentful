@@ -8,9 +8,16 @@
 
 namespace ahaberberger\ContentfulBundle\Services;
 
+use ahaberberger\ContentfulBundle\Entities\Asset;
 use ahaberberger\ContentfulBundle\Entities\Entry;
+use ahaberberger\ContentfulBundle\Entities\Link;
+use ahaberberger\ContentfulBundle\Entities\AbstractType;
 use GuzzleHttp\Client;
 
+/**
+ * Class ContentfulService
+ * @package ahaberberger\ContentfulBundle\Services
+ */
 class ContentfulService {
 
     /** @var  string */
@@ -21,6 +28,13 @@ class ContentfulService {
 
     /** @var  Client */
     protected $client;
+
+    protected $types = [
+        'ContentType'   => 'contenttypes',
+        'Space'         => 'spaces',
+        'Entry'         => 'entries',
+        'Asset'         => 'assets'
+    ];
 
     function __construct($space, $token)
     {
@@ -50,6 +64,42 @@ class ContentfulService {
         return $entries;
     }
 
+    public function getAsset($id)
+    {
+        $request = $this->client->createRequest('GET', sprintf('%s/assets/%s', $this->getUrl(), $id));
+        $request->addHeader('Authorization', sprintf('Bearer %s', $this->token));
+        $response = $this->client->send($request);
+        $asset = $this->parseAsset($response->json());
+        return $asset;
+    }
+
+    /**
+     * @param Link $link
+     * @return AbstractType
+     */
+    public function resolveLink($link)
+    {
+        $type = $this->types[$link->getLinkType()];
+        $request = $this->client->createRequest(
+            'GET',
+            sprintf('%s/%s/%s', $this->getUrl(), $type, $link->getId())
+        );
+        $request->addHeader('Authorization', sprintf('Bearer %s', $this->token));
+        $response = $this->client->send($request);
+        switch ($type) {
+            case 'assets':
+                $result = Asset::fromArray($response->json());
+                break;
+            case 'entries':
+                $result = Entry::fromArray($response->json());
+                break;
+            default:
+                $result = null;
+                break;
+        }
+        return $result;
+    }
+
     protected function getUrl(){
         return sprintf('https://cdn.contentful.com/spaces/%s', $this->space);
     }
@@ -66,5 +116,10 @@ class ContentfulService {
             }
         }
         return $out;
+    }
+
+    protected function parseAsset($json)
+    {
+        return Asset::fromArray($json);
     }
 }

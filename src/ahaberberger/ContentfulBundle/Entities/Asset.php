@@ -11,4 +11,10 @@ namespace ahaberberger\ContentfulBundle\Entities;
 
 class Asset extends AbstractType {
 
+    public static function fromArray($data)
+    {
+        $instance = parent::fromArray($data);
+
+        return $instance;
+    }
 } 
