@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Website Template</title>
+    <link rel="stylesheet" href="{{ asset('bundles/ahaberbergercontentful/css/style.css') }}" type="text/css">
+</head>
+<body>
+<div class="background">
+    <div class="page">
+        <div class="logo">
+            <span> <a href="index.html"><img src="{{ asset('bundles/ahaberbergercontentful/images/logo.png') }}" alt=""></a> </span>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li class="selected">
+                    <a href="index.html">home</a>
+                </li>
+                <li>
+                    <a href="about.html">about</a>
+                </li>
+                <li>
+                    <a href="blog.html">blog</a>
+                </li>
+            </ul>
+            <div class="connect">
+                <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+            </div>
+            <p class="footnote">
+                &#169; Copyright 2012. <br> All rights reserved.
+            </p>
+        </div>
+        <div class="body">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
