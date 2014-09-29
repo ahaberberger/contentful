@@ -1,4 +1,4 @@
 services:
     ahaberberger_contentful.contentful:
         class: ahaberberger\ContentfulBundle\Services\ContentfulService
-        arguments: ["%space%", "%token%"]
+        arguments: ["%contentful_space%", "%contentful_token%"]
