@@ -1,4 +1,8 @@
+ahaberberger_layout:
+    resource: "@ahaberbergerLayoutBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ahaberberger_contentful:
     resource: "@ahaberbergerContentfulBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /contentful/
 

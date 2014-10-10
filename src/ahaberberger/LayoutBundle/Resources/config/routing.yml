@@ -1,0 +1,3 @@
+ahaberberger_layout_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ahaberbergerLayoutBundle:Default:index }
