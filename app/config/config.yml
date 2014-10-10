@@ -33,7 +33,23 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        ["ahaberbergerLayoutBundle", "ahaberbergerContentfulBundle"]
+    assets:
+        font-awesome-otf:
+            inputs: '@ahaberbergerLayoutBundle/Resources/public/global/plugins/font-awesome/fonts/FontAwesome.otf'
+            output: 'fonts/FontAwesome.otf'
+        font-awesome-eot:
+            inputs: '@ahaberbergerLayoutBundle/Resources/public/global/plugins/font-awesome/fonts/fontawesome-webfont.eot'
+            output: 'fonts/fontawesome-webfont.eot'
+        font-awesome-svg:
+            inputs: '@ahaberbergerLayoutBundle/Resources/public/global/plugins/font-awesome/fonts/fontawesome-webfont.svg'
+            output: 'fonts/fontawesome-webfont.svg'
+        font-awesome-ttf:
+            inputs: '@ahaberbergerLayoutBundle/Resources/public/global/plugins/font-awesome/fonts/fontawesome-webfont.ttf'
+            output: 'fonts/fontawesome-webfont.ttf'
+        font-awesome-woff:
+            inputs: '@ahaberbergerLayoutBundle/Resources/public/global/plugins/font-awesome/fonts/fontawesome-webfont.woff'
+            output: 'fonts/fontawesome-webfont.woff'
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

@@ -1,15 +1,63 @@
-{% extends 'ahaberbergerContentfulBundle::layout.html.twig' %}
+{% extends 'ahaberbergerLayoutBundle::layout.html.twig' %}
 {% block content %}
-<ul>
-    {% for entry in entries %}
-    <li class="first">
-        <h3><a href="blog.html">{{ entry.fields.title }}</a></h3>
-        <span>Posted : {{ entry.fields.date }}</span> <a href="blog.html"><img src="http:{{ entry.fields.image.fields.file.url }}" alt=""></a>
-        <p>
-            {{ entry.fields.text }}
-        </p>
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+    <div class="container">
+        <!-- BEGIN RECENT WORKS -->
+        <div class="row recent-work margin-bottom-40">
+            <div class="col-md-3">
+                <h2><a href="portfolio.html">Recent Works</a></h2>
+                <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde voluptatem. Sed unde omnis iste natus error sit voluptatem.</p>
+            </div>
+            <div class="col-md-9">
+                <div class="owl-carousel owl-carousel3">
+                    {% for entry in entries %}
+                    <div class="recent-work-item">
+                        <em>
 
+                            <img src="{{ entry.fields.image.fields.file.url }}" alt="Amazing Project" class="img-responsive"">
+
+                            <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                            <a href="{{ entry.fields.image.fields.file.url }}" class="fancybox-button" title="{{ entry.fields.title }}" data-rel="fancybox-button"><i class="fa fa-search"></i></a>
+                        </em>
+                        <a class="recent-work-description" href="#">
+                            <strong>{{ entry.fields.title }}</strong>
+                            <b>Agenda corp.</b>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- END RECENT WORKS -->
+
+        <!-- BEGIN TABS AND TESTIMONIALS -->
+        <div class="row mix-block margin-bottom-40">
+            <!-- TABS -->
+            <div class="col-md-12 tab-style-1">
+                <ul class="nav nav-tabs">
+                    {% for key,entry in entries %}
+                        <li {% if key == 0 %} class="active"{% endif %}><a href="#tab-{{ key }}" data-toggle="tab">{{ entry.fields.title }}</a></li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tab-content">
+                    {% for key,entry in entries %}
+                    <div class="tab-pane row fade in active" id="tab-{{ key }}">
+                        <div class="col-md-3 col-sm-3">
+                            <a href="{{ entry.fields.image.fields.file.url }}" class="fancybox-button" title="Image Title" data-rel="fancybox-button">
+                                <img class="img-responsive" src="{{ entry.fields.image.fields.file.url }}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-9 col-sm-9">
+                            <p class="margin-bottom-10">{{ entry.fields.text }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- END TABS -->
+
+        </div>
+        <!-- END TABS AND TESTIMONIALS -->
+
+    </div>
+{% endblock %}
