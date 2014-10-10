@@ -41,7 +41,7 @@
 
                 <div class="tab-content">
                     {% for key,entry in entries %}
-                    <div class="tab-pane row fade in active" id="tab-{{ key }}">
+                    <div class="tab-pane row fade in{% if key == 0 %} active{% endif %}" id="tab-{{ key }}">
                         <div class="col-md-3 col-sm-3">
                             <a href="{{ entry.fields.image.fields.file.url }}" class="fancybox-button" title="Image Title" data-rel="fancybox-button">
                                 <img class="img-responsive" src="{{ entry.fields.image.fields.file.url }}" alt="">
